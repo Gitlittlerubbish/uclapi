@@ -74,6 +74,10 @@ $white: #fff;
 	background-color: #282B2E;
 }
 
+.transparent {
+	background-color: #FFFFFF00;
+}
+
 /** Text **/
 
 h1, h2, h3, h4, h5{
@@ -133,6 +137,9 @@ a:hover { color: #BBBBBB; }
 .medium-size {
 	min-width: 400px;
 }
+.fit-content {
+	min-width: 280px;
+}
 
 /** Containers **/
 
@@ -140,7 +147,6 @@ a:hover { color: #BBBBBB; }
 	width: 100%;
     position: relative;
 	height: auto;
-	min-height: 100% !important;
 }
 
 .vertical-padding-top { padding-top: 50px; }

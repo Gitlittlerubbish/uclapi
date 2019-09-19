@@ -214,9 +214,20 @@ class HomePage extends React.Component {
           <Column style="9-10" isCentered={true} isCenteredText={true}>
             <TextView text={"Check out our blog for tutorials"} heading={1} align={"center"}/>
             {this.state.articles.map(x => ( 
-              <CardView width={"20%"} size={"small"} link={x.url} cardType={"alternate"} isMobileFriendly={true}>
-                <Column style="9-10" isCentered={true}>
-                  <TextView text={x.title} align={"center"} heading = {3} color={"black"}/>
+              <CardView width={"20%"} height="300px" size={"fit-content"} link={x.url} cardType={"alternate"} isMobileFriendly={true}>
+                <Column style="1-1">
+                  <Row height = "200px" src={x.image_url}>
+                    <Column style="9-10" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                      <TextView text={x.title} align={"center"} heading = {3} color={"white"} link={x.url} />
+                    </Column>
+                  </Row> 
+                  <Row height = "100px" color="transparent">
+                    <Column style="9-10" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                      <TextView text={"Created by: " + x.creator} align={"center"} heading = {6} color={"black"} />
+                      <TextView text={"Date published: " + x.published} align={"center"} heading = {6} color={"black"} />
+                      <TextView text={x.tags} align={"center"} heading = {6} color={"black"} />
+                    </Column>
+                  </Row>
                 </Column>
               </CardView>
             ) ) }

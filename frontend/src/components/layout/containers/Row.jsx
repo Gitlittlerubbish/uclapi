@@ -1,5 +1,7 @@
 import React from 'react';
 
+import placeholder from 'Images/home-page/splash_screen.png';
+
 /**
 REQUIRED ATTRIBUTES:
 this.props.color OR this.props.src (remember to set a design for the layout)
@@ -31,10 +33,16 @@ export default class Row extends React.Component {
       var img_size = "Cover";
       if(this.props.img_size) { img_size = this.props.img_size; }
 
-       row_style['backgroundImage'] = `url(${this.props.src})`; 
-       row_style['backgroundSize'] = img_size;
-       row_style['backgroundPosition'] = "50%";
-       row_style['backgroundRepeat'] = "no-repeat";
+      console.log(this.props.src);
+
+      if(img.props.src == "url_not_found") {
+        row_style['backgroundImage'] = `url(${placeholder})`; 
+      } else {
+        row_style['backgroundImage'] = `url(${this.props.src})`; 
+      }
+      row_style['backgroundSize'] = img_size;
+      row_style['backgroundPosition'] = "50%";
+      row_style['backgroundRepeat'] = "no-repeat";
     }
 
     return (
