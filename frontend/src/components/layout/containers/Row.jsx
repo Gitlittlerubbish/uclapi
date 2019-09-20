@@ -35,7 +35,7 @@ export default class Row extends React.Component {
 
       console.log(this.props.src);
 
-      if(img.props.src == "url_not_found") {
+      if(this.props.src == "url_not_found") {
         row_style['backgroundImage'] = `url(${placeholder})`; 
       } else {
         row_style['backgroundImage'] = `url(${this.props.src})`; 
