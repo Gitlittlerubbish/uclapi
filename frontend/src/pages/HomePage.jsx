@@ -162,27 +162,27 @@ class HomePage extends React.Component {
         </Row>
         <Row isPaddedBottom = {true} color="dark-grey">         
           <Column style="2-3" isCentered={true} isCenteredText={true}>
-           <Column style="1-3" isInline={"grid"} isMobileFriendly={true} size={"small"}>
+           <CardView width="1-3" minWidth="300px" style="no-bg">
             <TextView text={"Simple Interfaces"} heading={2} align={"center"}/>
             <TextView text={`The endpoints are streamlined to enable any developer to easily pick up and use the api. We hope that developers of all ability
                             find our endpoints and website easy to navigate. We do not want to overcomplicate the process of developing
                             awesome apps, we want to be the easiest part of your development process!`} align={"justify"} heading={5} />
             <ImageView src={star} width={iconsize} height={iconsize} description={"an icon of a love heart"} isCentered={true} />
-           </Column>
-           <Column style="1-3" isInline={"grid"} isMobileFriendly={true} size={"small"}>
+           </CardView>
+           <CardView width="1-3" minWidth="300px" style="no-bg">
             <TextView text={"Documentation First"} heading={2} align={"center"}/>
             <TextView text={`As developers we feel the pain of bad documentation: this is why we are driven by good documentation. We want you 
                              to spend less time worrying about how to use our api and more time thinking about how to revolutionise the student experience. 
                              With good documentation we allow you to focus on building helpful applications.`} align={"justify"} heading={5} />
             <ImageView src={docs} width={iconsize} height={iconsize} description={"an icon of a clipboard"} isCentered={true} />
-           </Column>
-           <Column style="1-3" isInline={"grid"} isMobileFriendly={true} size={"small"}>
+           </CardView>
+           <CardView width="1-3" minWidth="300px" style="no-bg">
             <TextView text={"Enable Developers"} heading={2} align={"center"}/>
             <TextView text={`We want the api to be so comprehensive that any idea, no matter how big, can be created in order to improve students lives. We are always
                              open to suggestions for new endpoints and functionality so we can enable a greater range of applications to be developed. We
                              cannot wait to see what you will develop!`} align={"justify"} heading={5}/>
             <ImageView src={heart} width={iconsize} height={iconsize} description={"an icon of a star"} isCentered={true} />
-           </Column>
+           </CardView>
           </Column>
         </Row>
         <Row isPaddedBottom = {true} color="dark-grey">         
@@ -197,13 +197,15 @@ class HomePage extends React.Component {
           </Column>
         </Row>
         <Row isPaddedBottom = {true} color="ucl-orange">
-          <Column style="9-10" widthOverride="auto" isCentered={true} isCenteredText={true}>
+          <Column style="2-3" widthOverride="auto" isCentered={true} isCenteredText={true}>
             {endpoints.map(x => (
-              <CardView  width={"30%"} link={x.link} isMobileFriendly={true} size={"medium"}>
-                <Column style="9-10" isCentered={true}>
-                  <TextView text={x.name} heading={2} align={"center"}/>
-                  <TextView text={x.description} heading={5} align={"center"}/>
-                </Column>
+              <CardView width={"1-2"} minWidth={"300px"} link={x.link} >
+                <Row height = "200px">
+                  <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                    <TextView text={x.name} heading={2} align={"center"}/>
+                    <TextView text={x.description} heading={5} align={"center"}/>
+                  </Column>
+                </Row>
               </CardView> ) ) }
           </Column>
         </Row>
@@ -214,7 +216,7 @@ class HomePage extends React.Component {
           <Column style="9-10" isCentered={true} isCenteredText={true}>
             <TextView text={"Check out our blog for tutorials"} heading={1} align={"center"}/>
             {this.state.articles.map(x => ( 
-              <CardView width={"20%"} height="300px" size={"fit-content"} link={x.url} cardType={"alternate"} isMobileFriendly={true}>
+              <CardView width={"1-3"} minWidth={"300px"} style={"alternate"} link={x.url}>
                 <Column style="1-1">
                   <Row height = "200px" src={x.image_url}>
                     <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>

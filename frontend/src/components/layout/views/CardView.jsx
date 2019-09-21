@@ -2,49 +2,72 @@ import React from 'react';
 
 /**
 REQUIRED ATTRIBUTES:
-this.props.src (gives the name of the image to be rendered relative to images/)
-this.props.description (gives a description of the image being rendered for slow browsers)
-this.props.width (need the width of the image)
-this.props.height (need the height of the image)
+this.props.width - e.g 8-10 = 80% 
 
 OPTIONAL ATTRIBUTES:
+this,props.style - e.g default (dark grey => if none given) / alternate (light grey) / emphasis (orange) / fit-content (no padding or margin for inner content)
 this.props.link (Turns the card clickable)
-this.props.margin (Custom set the margin)
-this.props.padding (Custom set the padding)
+this.props.minWidth - e.g 300px a minimum width (unset if not given)
+this.props.addPadding - true/false adds a 20px padding
 **/
 export default class CardView extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // ALLOWS FOR ANY DEBUGGING
+    this.state = {
+      DEBUGGING : true,
+    };
+
+    // BINDS FUNCTIONS
+    this.getWidth = this.getWidth.bind(this);
+    this.getMinWidth = this.getMinWidth.bind(this);
+    this.getStyle = this.getStyle.bind(this);
+  }
+
+  getWidth() {
+    var fraction = this.props.width.split("-");
+    var adaptation = 100 - ( 4 * fraction[1] ); 
+    var percentage = fraction[0] / fraction[1] * adaptation;
+    return percentage + "%";
+  }
+
+  getMinWidth() {
+    var minWidth = "unset";
+    if(this.props.minWidth) {minWidth=this.props.minWidth;}
+    return minWidth;
+  }
+
+  getStyle() {
+    var style = "default";
+    if(this.props.style) {style=this.props.style;}
+    return style;
   }
 
   render() {
-    var card_class_name = "uclapi-card uclapi-card-";
-    var card_style = {};
-
-    var cardType = "default";
-    if(this.props.cardType) {cardType=this.props.cardType;}
-    card_class_name+=cardType;
-
-    var isLink = false;
-
-    if(this.props.isMobileFriendly) {card_class_name += " mobile-friendly"}
-    if(this.props.link) { card_class_name += " default-transition background-color-transition clickable uclapi-card-clicked-"+cardType; isLink = true;}
-    if(this.props.isJustifiedText) { card_class_name += " justified-text";}
-    if(this.props.padding) { card_style['padding'] = this.props.padding ;}
-    if(this.props.margin) { card_style['margin'] = this.props.margin ;}
-    if(this.props.size) { 
-      card_class_name += " " + this.props.size + "-size"; 
-      if(this.props.size == "fit-content") {
-          card_style['padding'] = "0";
-          card_style['overflow'] = "hidden";
-      }
+    if(this.DEBUGGING) {
+      console.log("CardView rendered with the following props: " + this.props);
     }
 
-    card_style['width'] = this.props.width;
-    card_style['height'] = this.props.height;
+    var card_style = {};
 
-    if(isLink) {
+    // REQUIRED ATTRIBUTES
+    // STYLE
+    var card_class_name = "uclapi-card uclapi-card-"+this.getStyle();
+    // WIDTH
+    card_style['width'] = this.getWidth();
+    // MIN WIDTH
+    card_style['minWidth'] = this.getMinWidth();
+
+    // OPTIONAL ATTRIBUTES
+    // LINK
+    if(this.props.link) { card_class_name += " default-transition background-color-transition clickable uclapi-card-clicked-"+this.getStyle(); }
+    // ADD PADDING
+    if(this.props.addPadding) { card_style['padding'] = "20px 0"; }
+
+    // RENDER METHOD
+    if(this.props.link) {
       return (
           <a href = {this.props.link}>
             <div className={card_class_name} style={card_style}>
