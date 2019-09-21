@@ -10,6 +10,7 @@ import ImageView from './views/ImageView.jsx';
 import CodeView from './views/CodeView.jsx';
 import Demo from './Demo.jsx';
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
 
 export {
     Row,
@@ -20,5 +21,6 @@ export {
     ImageView, 
     CodeView,
     Demo, 
-    NavBar
+    NavBar, 
+    Footer
 }
