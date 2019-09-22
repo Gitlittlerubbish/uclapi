@@ -115,6 +115,7 @@ a:hover { color: #BBBBBB; }
 
 .column {
     text-align: center;
+    overflow: hidden;
 }
 
 .center-x {
@@ -290,8 +291,6 @@ a:hover { color: #BBBBBB; }
 
 .rc-collapse-content {
     border-top: solid 1px #CCC;
-    color: #666;
-    font-size: 20px;
     overflow: hidden;
     padding: 0 16px;
 
@@ -299,6 +298,11 @@ a:hover { color: #BBBBBB; }
     margin-bottom: 16px;
     margin-top: 16px;
   }
+}
+
+.rc-collapse-content p {
+    color: #666;
+    font-size: 20px;
 }
 
 
