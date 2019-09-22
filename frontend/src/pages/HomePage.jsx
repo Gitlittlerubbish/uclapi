@@ -137,7 +137,7 @@ class HomePage extends React.Component {
 
         {this.state.host == "staging.ninja" && (
           <Row isPadded = {true} color="warning-red">         
-            <Column style="9-10" isCentered={true} >
+            <Column width="9-10" horizontalAlignment={"center"} >
               <TextView align={"center"} text={"Warning! This is our bleeding-edge staging environment, and therefore performance, accuracy and reliability of the API cannot be guaranteed. For our stable, supported API please go to:"} heading={1} />
               <TextView align={"center"} text={"uclapi.com"} heading = {2} link = {"https://uclapi.com"}/>
             </Column>
@@ -145,7 +145,7 @@ class HomePage extends React.Component {
         )}
 
         <Row height = "600px" src={splash_screen}>         
-          <Column style="1-1" isCentered={true} isVerticalAlign={true} isCenteredText={true}>
+          <Column width="2-3" horizontalAlignment="center" verticalAlignment="center">
             <TextView text={"UCL API"} heading={1} align={"center"}/>
             <TextView text={"UCL API is a student-built platform for student developers to improve the student experience of everyone at UCL."} heading={2} align={"center"}/>
             <ButtonView inline={true} text={startLabel} link={"/dashboard"}/>
@@ -154,12 +154,12 @@ class HomePage extends React.Component {
         </Row>
 
         <Row isPadded = {true} color="dark-grey">         
-          <Column style="9-10" isCentered={true} >
+          <Column width="9-10" horizontalAlignment="center" verticalAlignment="center" >
             <TextView text={"Our Goals"} heading={1} align={"center"}/>
           </Column>
         </Row>
         <Row isPaddedBottom = {true} color="dark-grey">         
-          <Column style="2-3" isCentered={true} isCenteredText={true}>
+          <Column width="2-3" horizontalAlignment="center" >
            <CardView width="1-3" minWidth="300px" style="no-bg">
             <TextView text={"Simple Interfaces"} heading={2} align={"center"}/>
             <TextView text={`The endpoints are streamlined to enable any developer to easily pick up and use the api. We hope that developers of all ability
@@ -184,22 +184,22 @@ class HomePage extends React.Component {
           </Column>
         </Row>
         <Row isPaddedBottom = {true} color="dark-grey">         
-          <Column style="9-10" isCentered={true} >
+          <Column width="9-10" horizontalAlignment="center">
             <TextView align={"center"} text={"The UCL API Roadmap is public. Check it out and vote ✅"} align={"center"} heading = {3} link = {"https://trello.com/b/mimLkk3c/ucl-api-roadmap"}/>
           </Column>
         </Row>
 
         <Row isPadded = {true} color="ucl-orange">         
-          <Column style="9-10" isCentered={true} >
+          <Column width="9-10" horizontalAlignment="center" verticalAlignment="center" >
             <TextView text={"Get Started using our APIs"} heading={1} align={"center"}/>
           </Column>
         </Row>
         <Row isPaddedBottom = {true} color="ucl-orange">
-          <Column style="2-3" widthOverride="auto" isCentered={true} isCenteredText={true}>
+          <Column width="2-3" horizontalAlignment="center">
             {endpoints.map(x => (
               <CardView width={"1-2"} minWidth={"300px"} link={x.link} >
                 <Row height = "200px">
-                  <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                  <Column width="1-1" horizontalAlignment="center" verticalAlignment="center">
                     <TextView text={x.name} heading={2} align={"center"}/>
                     <TextView text={x.description} heading={5} align={"center"}/>
                   </Column>
@@ -211,18 +211,18 @@ class HomePage extends React.Component {
         <Demo />
 
         <Row isPadded={true} color="dark-grey">         
-          <Column style="9-10" isCentered={true} isCenteredText={true}>
+          <Column width="9-10" horizontalAlignment="center">
             <TextView text={"Check out our blog for tutorials"} heading={1} align={"center"}/>
             {this.state.articles.map(x => ( 
-              <CardView width={"1-3"} minWidth={"300px"} style={"alternate"} link={x.url}>
-                <Column style="1-1">
+              <CardView width={"1-3"} minWidth={"350px"} style={"alternate"} link={x.url}>
+                <Column width="1-1">
                   <Row height = "200px" src={x.image_url}>
-                    <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                    <Column width="1-1" horizontalAlignment="center" verticalAlignment="center">
                       <TextView text={x.title} align={"center"} heading = {3} color={"white"} link={x.url} />
                     </Column>
                   </Row> 
-                  <Row height = "100px" color="transparent">
-                    <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+                  <Row height = "150px" color="transparent">
+                    <Column width="1-1" horizontalAlignment="center" verticalAlignment="center">
                       <TextView text={"Created by: " + x.creator} align={"center"} heading = {6} color={"black"} />
                       <TextView text={"Date published: " + x.published} align={"center"} heading = {6} color={"black"} />
                       <TextView text={x.tags} align={"center"} heading = {6} color={"black"} />
@@ -235,7 +235,7 @@ class HomePage extends React.Component {
         </Row>
 
         <Row src={market} height="600px" img_size="auto 60%" color="ucl-orange">         
-          <Column style="1-1" isCentered={true} isCenteredText={true} isVerticalAlign={true}>
+          <Column width="2-3" horizontalAlignment="center" verticalAlignment="center">
             <TextView text={"UCL Marketplace"} heading={1} align={"center"}/>
             <TextView text={"Check out the UCL Marketplace to find apps built using UCL API"} heading={2} align={"center"}/>
             <ButtonView inline={true} text={"UCL MARKETPLACE"} link={"/marketplace"}/>
@@ -243,7 +243,7 @@ class HomePage extends React.Component {
         </Row>
 
         <Row isPadded={true} color="dark-grey">         
-          <Column style="2-3" isCentered={true} isCenteredText={true}>
+          <Column width="2-3" horizontalAlignment="center">
             <TextView text={"Frequently Asked Questions"} heading={1} align={"center"}/>
             {FAQ.map(x => ( 
               questionandanswer(x.question, x.answer)
