@@ -199,7 +199,7 @@ class HomePage extends React.Component {
 
         <Demo />
 
-        <Row isPadded={true} color="secondary">         
+        <Row isPadded={true} color="primary">         
           <Column width="9-10" horizontalAlignment="center">
             <TextView text={"Check out our blog for tutorials"} heading={1} align={"center"}/>
             {this.state.articles.map(x => ( 
@@ -223,7 +223,7 @@ class HomePage extends React.Component {
           </Column>
         </Row>
 
-        <Row src={market} height="600px" img_size="auto 60%" color="primary">         
+        <Row src={market} height="600px" img_size="auto 60%" color="secondary">         
           <Column width="2-3" horizontalAlignment="center" verticalAlignment="center">
             <TextView text={"UCL Marketplace"} heading={1} align={"center"}/>
             <TextView text={"Check out the UCL Marketplace to find apps built using UCL API"} heading={2} align={"center"}/>
@@ -231,7 +231,7 @@ class HomePage extends React.Component {
           </Column>
         </Row>
 
-        <Row isPadded={true} color="secondary">         
+        <Row isPadded={true} color="primary">         
           <Column width="2-3" horizontalAlignment="center">
             <TextView text={"Frequently Asked Questions"} heading={1} align={"center"}/>
             {FAQ.map(x => ( 
