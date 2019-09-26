@@ -21,6 +21,7 @@
 	- Code Segments
 	- RC-Collapse
   - Input Forms
+  - Auto complete forms
 
 **/
 
@@ -40,6 +41,8 @@ html, body {
 /** Color Scheme **/
 
 $primary-color: #2980b9;
+$primary-highlight-color: #3498db;
+
 $secondary-color: #313537;
 
 $accent-color: #8D6E63;
@@ -61,6 +64,8 @@ $highlight-color: #B18453;
   background-size: cover;
 }
 
+.primary-highlight { background-color: $primary-highlight-color }
+
 .secondary { background-color: $secondary-color;}
 .warning-red { background-color: red; }
 
@@ -69,10 +74,13 @@ $highlight-color: #B18453;
 
 /** Text **/
 
-p, h1, h2, h3, h4, h5{
-	margin-top: 0;
+p, h1, h2, h3, h4, h5, h6 {
 	font-family: 'Roboto', sans-serif;
 	color: white;
+}
+
+p, h1, h2, h3, h4, h5 {
+  margin-top: 0;
 }
 
 h5 {
@@ -136,9 +144,12 @@ a:hover { color: #BBBBBB; }
 
 .row {
 	width: 100%;
-    position: relative;
+  position: relative;
 	height: auto;
-	padding: 50px 0;
+}
+
+.vertical-padding {
+  padding: 50px 0;
 }
 
 /** Buttons **/
@@ -161,8 +172,8 @@ a:hover { color: #BBBBBB; }
 .alternate-button { background-color: #FFFFFF; color: black; }
 .alternate-button:hover, .uclapi-card-clicked-alternate:hover { background-color: #CCCCCC;  }
 
-.emphasis-button, .image-button { background-color: #FC9685; color: black; }
-.emphasis-button:hover, .uclapi-card-clicked-emphasis:hover, .image-button:hover { background-color: #C95241;  }
+.emphasis-button, .image-button { background-color: $primary-highlight-color; color: black; }
+.emphasis-button:hover, .uclapi-card-clicked-emphasis:hover, .image-button:hover { background-color: $primary-color;  }
 
 /** Transitions **/
 
@@ -180,31 +191,32 @@ a:hover { color: #BBBBBB; }
 	border-radius: 10px;
 	height: auto;
 	overflow: hidden;
-	min-height: 200px;
+	min-height: fit-content;
 	margin: 2%;
 }
 
 .uclapi-card-default {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	background-color: #313537;
 }
 
 .uclapi-card-wrap-around {
 	display: flex;
-    float: left;
+  float: left;
 	background-color: #00000000;
 	margin: 0;
 	padding: 0;
 }
 
 .uclapi-card-alternate {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	background-color: #FFFFFF; 
 }
 
 .uclapi-card-emphasis {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	background-color: #FC9685; 
+	background-color: $primary-highlight-color; 
+}
+
+.uclapi-card-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .clickable {
@@ -225,7 +237,7 @@ a:hover { color: #BBBBBB; }
 /** RC Collapse **/
 
 .rc-collapse {
-  background-color: #3498db;
+  background-color: $primary-highlight-color;
   border-radius: 10px;
   margin: 5px 0;
   color: white;
@@ -314,12 +326,32 @@ a:hover { color: #BBBBBB; }
 
 input {
   padding: 2%;
-  border-radius: 10px;
   border: none;
   float: left;
-  margin: 20px 0;
+  margin: 0;
   width: 96%;
-  background-color: $secondary-color;
+  background-color: $primary-highlight-color;
   color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder { 
+  color: white;
+}
+
+input:focus{
+    outline: none;
+}
+
+/** For Autocomplete forms **/
+
+ul {
+    margin: 0;
+    padding-left: 0;
+    border-radius: 10px
+}
+li {
+    list-style-type: none;
+    margin: 0;
+    float: left;
+    width: 100%;
 }

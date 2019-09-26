@@ -28,18 +28,25 @@ const muiTheme = getMuiTheme({
 
 // Required components
 import rooms from 'Layout/data/room_names.jsx';
-import {Column, Row, TextView, CodeView} from 'Layout/Items.jsx';
+import {Column, Row, TextView, CodeView, CardView} from 'Layout/Items.jsx';
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = (value) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
+  var inputValue = "a"; var inputLength = 1; 
+  if( typeof value != "undefined") {
+    inputValue = value.trim().toLowerCase();
+    inputLength = inputValue.length;
+  }
+
+  console.log("DEBUG: Suggestions looked for with: " + inputValue + " of length: " + inputLength);
 
   var suggestions = inputLength === 0 ? [] : rooms.filter(room =>
     room.toLowerCase().slice(0, inputLength) === inputValue
   );
 
   if(suggestions.length > 10) { suggestions.splice(10); }
+
+  console.log("DEBUG: New suggestions found: " + suggestions);
 
   return suggestions;
 };
@@ -49,15 +56,23 @@ const getSuggestions = (value) => {
 // input value for every given suggestion.
 const getSuggestionValue = suggestion => suggestion.name;
 
+const row_size = 40;
 // Use your imagination to render suggestions.
 const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
+   <Row color="primary-highlight" height={row_size + "px"} noPadding>         
+    <Column width="9-10" horizontalAlignment="center" verticalAlignment="center">
+      <CardView width="9-10" style="emphasis" fakeLink noShadow>
+        <Row height = {(row_size-12) + "px"} noPadding>
+          <Column width="1-1" horizontalAlignment="center" verticalAlignment="center">
+              <TextView align="center" text={suggestion} heading={6}/>
+          </Column>
+        </Row>
+      </CardView>
+    </Column>
+  </Row>
 );
 
 export default class Demo extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -79,7 +94,7 @@ export default class Demo extends React.Component {
 
     this.makeRequest = this.makeRequest.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onSelect = this.onSelect.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
   }
@@ -99,19 +114,19 @@ export default class Demo extends React.Component {
         <Row color={"secondary"} height={"fit-content"} isPaddedBottom={true}>
           <Column width="2-3" horizontalAlignment="center">
             <TextView text={"Try out the API"} heading={1} align={"center"} />
-            <Autosuggest
-              suggestions={__suggestions}
-              getItemValue={ item => item.name }
-              onChange={ (event, value) => this.onChange(event, value) }
-              onSelect={ value => this.onSelect(value) }
-              onSuggestionsFetchRequested={ value => this.onSuggestionsFetchRequested(value) }
-              onSuggestionsClearRequested={ () => this.onSuggestionsClearRequested() }
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-            />
+              <Autosuggest
+                suggestions={__suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                onSuggestionSelected={this.getSuggestionValue}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps}
+              />
           </Column>
           
+          <Row height="20px" noPadding/>
+
           <Column width="2-3" horizontalAlignment="center">
             <CodeView url={`${this.state.rootURL}/roombookings/bookings`} params={this.state.params} type={"request"}/>
           </Column>
@@ -131,21 +146,27 @@ export default class Demo extends React.Component {
     );
   }
 
-  onChange(event, value) {
-    if(this.state.DEBUGGING) { console.log("DEBUG: Autocomplete form changed input to: " + value); }
+  onSuggestionSelected = ({ value }) => {
+    if(this.state.DEBUGGING) { console.log("DEBUG: Suggestions clicked with a value of: " + value); }
+
+    makeRequest(value);
 
     this.setState({
-      __value: value
+      __value: newValue
+    });
+  }
+
+  onChange = (event, { newValue }) => {
+    if(this.state.DEBUGGING) { console.log("DEBUG: Autocomplete form changed input to: " + newValue); }
+
+    this.setState({
+      __value: newValue
     });
   };
 
-  onSelect(value) {
-    if(this.state.DEBUGGING) { console.log("DEBUG: Selected autocomplete value of: " + value); }
-    
-    makeRequest(value);
-  };
-
-  onSuggestionsFetchRequested(value) {
+  // Autosuggest will call this function every time you need to update suggestions.
+  // You already implemented this logic above, so just use it.
+  onSuggestionsFetchRequested = ({ value }) => {
     if(this.state.DEBUGGING) { console.log("DEBUG: Fetch suggestions for value of: " + value); }
 
     this.setState({
@@ -153,12 +174,15 @@ export default class Demo extends React.Component {
     });
   };
 
-  onSuggestionsClearRequested() {
-    if(this.state.DEBUGGING) { console.log("DEBUG: Auto complete suggestions cleared"); }
+  // Autosuggest will call this function every time you need to clear suggestions.
+  onSuggestionsClearRequested = () => {
+    if(this.state.DEBUGGING) { console.log("DEBUG: Cleared suggestions for Autocomplete"); }
 
-    this.setState({
-      suggestions: []
-    });
+    if(!this.state.DEBUGGING) {
+      this.setState({
+        __suggestions: []
+      });
+    }
   };
 
   makeRequest(roomName) {
