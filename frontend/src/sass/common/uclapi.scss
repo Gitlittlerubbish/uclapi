@@ -46,8 +46,23 @@ $secondary-color: #313537;
 $accent-color: #8D6E63;
 $highlight-color: #B18453;
 
-.primary { background-color: $primary-color;}
-.secondary { background-color: $secondary-color; }
+/** Row Colours **/
+
+.primary { 
+  background-image: url("http://anush.me/splash_screen.png");
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4); 
+  
+  /* Full height */
+  height: 100%; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.secondary { background-color: $secondary-color;}
 .warning-red { background-color: red; }
 
 .market-green { background-color: #03B77B; }
@@ -73,6 +88,7 @@ h1 {
     font-weight: 700;
     margin-bottom: 20px;
     margin-top: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.45);
 }
 
 .justified-text {
@@ -140,7 +156,8 @@ a:hover { color: #BBBBBB; }
 	border-radius: 2px;
 	width: fit-content;
 	display: inline-block;
-	text-decoration: none;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .circular-button { border-radius: 25%; }
@@ -313,6 +330,9 @@ input {
   float: left;
   margin: 0;
   width: 96%;
+  background-color: $secondary-color;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /** For Autocomplete forms **/
