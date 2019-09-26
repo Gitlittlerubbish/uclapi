@@ -8,6 +8,8 @@ import ButtonView from './views/ButtonView.jsx';
 import CardView from './views/CardView.jsx';
 import ImageView from './views/ImageView.jsx';
 import CodeView from './views/CodeView.jsx';
+import AutoCompleteView from './views/AutoCompleteView.jsx';
+// Custom UCL API Components
 import Demo from './Demo.jsx';
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
@@ -22,5 +24,6 @@ export {
     CodeView,
     Demo, 
     NavBar, 
-    Footer
+    Footer, 
+    AutoCompleteView
 }
