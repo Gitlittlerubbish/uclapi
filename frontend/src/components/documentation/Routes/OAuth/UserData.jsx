@@ -5,7 +5,7 @@ import Table from './../../Table.jsx';
 import Cell from './../../Cell.jsx';
 
 // Code Generator 
-import * as RequestGenerator from 'Layout/Data/RequestGenerator.jsx';
+import * as RequestGenerator from 'Layout/data/RequestGenerator.jsx';
 
 let params = {
   "token": "uclapi-user-abd-def-ghi-jkl",
@@ -132,4 +132,3 @@ export default class UserData extends React.Component {
     }
 
 }
->>>>>>> master
